@@ -1,14 +1,17 @@
 import socket
 
 s = socket.socket()
-s.connect(("localhost", 5000))
+s.connect(("localhost", 5001))
 
-msg = input("Enter message: ")
+while True:
+    msg = input("Enter message: ")
 
-s.send((msg + "\n").encode())
+    if msg.lower() == "exit":
+        break
 
-response = s.recv(1024).decode()
+    s.send((msg + "\n").encode())
 
-print("Server:", response)
+    response = s.recv(1024).decode()
+    print("Server:", response)
 
 s.close()

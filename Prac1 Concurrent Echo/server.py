@@ -12,17 +12,18 @@ def handle(client):
             print("Client:", msg)
             client.send(("Echo: " + msg).encode())
 
-        client.close()
-
     except:
         print("Client disconnected")
 
+    finally:
+        client.close()
+
 
 server = socket.socket()
-server.bind(("0.0.0.0", 5000))
+server.bind(("0.0.0.0", 5001))
 server.listen()
 
-print("Server started on port 5000")
+print("Server started on port 5001")
 
 while True:
     client, address = server.accept()
